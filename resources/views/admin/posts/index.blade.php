@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Title</th>
                         <th scope="col">Author</th>
                         <th scope="col">Creation Date</th>
@@ -18,6 +19,7 @@
                     @foreach ($posts as $post )
                     <tr>
                         <td>{{ $post->id }}</td>
+                        <td>{{ $post->category_id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->author }}</td>
                         <td>{{ $post->creation_date}}</td>
