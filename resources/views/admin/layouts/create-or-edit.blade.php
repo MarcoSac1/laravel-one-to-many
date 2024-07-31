@@ -23,6 +23,22 @@
                 </div>
 
                 <div class="mb-3">
+                    @error('category_id')
+                    <div class="alert alert-danger mb-3">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    <select class="form-select" aria-label="Default select example" name="category_id">
+                        @foreach ( $categories as $category )
+                        <option value="{{ $category->id}}"
+                            {{ ($category->id == old('category_id', $post->category_id)) ? 'selected' :''}}
+                            >{{ $category->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label for="image_url">Image Url</label>
                     <input type="text" name="image_url" id="image_url" class="form-control mb-2" value="{{ old('image_url', $post->image_url)}}">
                     @error('image_url')

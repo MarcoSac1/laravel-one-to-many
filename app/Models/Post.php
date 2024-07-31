@@ -19,4 +19,8 @@ class Post extends Model
         'creation_date',
         'image_url',
     ];
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }

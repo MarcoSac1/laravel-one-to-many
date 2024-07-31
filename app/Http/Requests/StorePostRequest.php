@@ -25,6 +25,7 @@ class StorePostRequest extends FormRequest
             'title'=>['required','string','unique:posts','min:4','max:255'],
             'image_url'=>['required','url','min:4','max:255'],
             'content'=>['required','string','unique:posts','min:20'],
+            'category_id' =>['required','integer','exists:categories,id'],
         ];
     }
 
