@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         //
         $category = new Category();
-        return view ('admin.categories.index', compact('category'));
+        return view ('admin.categories.create', compact('category'));
 
     }
 
@@ -34,7 +34,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
+        $data = $request-> validate ([
+            'name' => 'required|string|min:2|max:50|unique:categories',
+            'color' => 'required|hex_color',
+
+        ]);
+        $category = Category::create($data);
+
+        return redirect()->route('admin.categories.show', $category);
     }
 
     /**
@@ -60,11 +68,17 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
-        dd($request->all());
+        // dd($request->all());
+        $data = $request->validate([
+            'name' => ['required','string','min:2','max:50', Rule::unique('categories')->ignore($category->id)],
+            'color' => 'required|hex_color',
 
+        ]);
+        $category->update($data);
+
+        return redirect()->route('admin.categories.index', $category);
     }
 
     /**
@@ -72,7 +86,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-        dd($request->all());
+
+        // dd($request->all());
+
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }

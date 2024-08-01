@@ -19,7 +19,7 @@
                     @foreach ($posts as $post )
                     <tr>
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->category->name }}</td>
+                        <td>{{ ($post->category) ? $post->category->name: 'without category' }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->author }}</td>
                         <td>{{ $post->creation_date}}</td>

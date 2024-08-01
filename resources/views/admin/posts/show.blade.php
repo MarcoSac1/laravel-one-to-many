@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('page-title')
+Showing {{ $post->title }}
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

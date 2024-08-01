@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('page-title')
+Showing {{ $category->name }}
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,8 +12,7 @@
             <ul>
                 @foreach ($category->posts as $post)
                 <li>
-                    <a href="{{ route('admin.posts.show', $post) }}"></a>
-                    {{ $post->title }} - {{ $post->author }}
+                    <a href="{{ route('admin.posts.show', $post) }}"> {{ $post->title }} - {{ $post->author }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -19,7 +20,7 @@
             <div class="card-footer">
                 <a href="{{route ('admin.categories.index') }}" class="btn btn-primary btn-sm">Return to categories list</a>
                 <a href="{{route ('admin.categories.edit',$category )}}" class="btn btn-success btn-sm">Edit</a>
-                <form action="{{route ('admin.categories.destroy',$category )}}" method="POST" class="d-inline-block form-destroyer" data-post-title='{{ $category->title }}'>
+                <form action="{{route ('admin.categories.destroy',$category )}}" method="POST" class="d-inline-block form-destroyer" data-category-title='{{ $category->name }}'>
                     @method('delete')
                     @csrf
 
@@ -31,5 +32,5 @@
 </div>
 @endsection
 @section('additional-scripts')
-    @vite('resources/js/posts/delete-index-confirmation.js')
+    @vite('resources/js/categories/delete-index-confirmation.js')
 @endsection
