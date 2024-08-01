@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-8 p-3">
             <h2>{{ $post->id }}: {{ $post->title }}</h2>
-            <h2 class="d-inline-block px-3 rounded" style='background:{{$post->category->color}}'> {{ $post->category->name }}</h2>
+            @if ($post->category)
+                <h2 class="d-inline-block px-3 rounded" style='background:{{$post->category->color}}'> {{ $post->category->name }}</h2>
+            @endif
             <h3>{{ $post->author }}</h3>
             <div class="image">
                 <img src="{{ $post->image_url }}" class="img-fluid" alt="img">

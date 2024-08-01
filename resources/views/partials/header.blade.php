@@ -12,6 +12,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
+                @if (Route::has('admin.categories.index'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Category') }}</a>
+                </li>
+                @endif
+
+                @if (Route::has('admin.categories.create'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.categories.create') }}">{{ __('Create New category') }}</a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.posts.create') }}">{{ __('Create New post') }}</a>
                 </li>
